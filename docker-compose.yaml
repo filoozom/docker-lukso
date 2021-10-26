@@ -1,0 +1,16 @@
+version: "2.4"
+
+services:
+  vanguard:
+    build: ./vanguard
+    environment:
+      - CHAIN_ID
+      - NETWORK_ID
+      - NETWORK
+      - VANGUARD_BOOTNODES
+      - VANGUARD_RPC_HOST
+      - VANGUARD_MONITORING_HOST
+      - VANGUARD_VERBOSITY
+      - VANGUARD_P2P_PRIV_KEY
+      - VANGUARD_P2P_HOST_DNS
+      - EXTERNAL_IP
