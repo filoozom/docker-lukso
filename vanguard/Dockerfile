@@ -1,12 +1,9 @@
 FROM ubuntu:focal
 
-ARG NETWORK=l15-prod
-ARG CDN=https://storage.googleapis.com/l15-cdn/networks/${NETWORK}
 ARG REPO=vanguard-consensus-engine
 ARG CLIENT=vanguard
 ARG TAG=v0.1.0-rc.1
 ARG PLATFORM=Linux
-ARG TARGET=/opt/lukso/networks/$NETWORK/config
 
 RUN apt update \
   && apt install -y wget \
