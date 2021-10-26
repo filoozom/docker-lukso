@@ -1,5 +1,14 @@
-#!/bin/bash  
+#!/bin/bash
 
+# Download configuration
+CDN=https://storage.googleapis.com/l15-cdn/networks/$NETWORK
+CONFIG_TARGET=/opt/lukso/networks/$NETWORK/config
+
+mkdir -p $CONFIG_TARGET
+wget -O $CONFIG_TARGET/vanguard-genesis.ssz $CDN/vanguard-genesis.ssz?ignoreCache=1
+wget -O $CONFIG_TARGET/vanguard-config.yaml $CDN/vanguard-config.yaml?ignoreCache=1
+
+# Run vanguard
 VANGUARD_BOOTNODES=(${VANGUARD_BOOTNODES//,/ })
 BOOTNODES_ARGS=()
 for n in "${VANGUARD_BOOTNODES[@]}"; do
@@ -10,9 +19,9 @@ ARGUMENTS=(
   "--accept-terms-of-use"
   "--chain-id=$CHAIN_ID"
   "--network-id=$NETWORK_ID"
-  "--genesis-state=/opt/lukso/networks/$NETWORK/config/vanguard-genesis.ssz"
+  "--genesis-state=$CONFIG_TARGET/vanguard-genesis.ssz"
   "--datadir=/data/"
-  "--chain-config-file=/opt/lukso/networks/$NETWORK/config/vanguard-config.yaml"
+  "--chain-config-file=$CONFIG_TARGET/vanguard-config.yaml"
   "${BOOTNODES_ARGS[@]}"
   "--http-web3provider=http://127.0.0.1:8545"
   "--deposit-contract=0x000000000000000000000000000000000000cafe"

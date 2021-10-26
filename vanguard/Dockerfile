@@ -10,9 +10,6 @@ ARG TARGET=/opt/lukso/networks/$NETWORK/config
 
 RUN apt update \
   && apt install -y wget \
-  && mkdir -p /opt/lukso/networks/$NETWORK/config/ \
-  && wget -O /opt/lukso/networks/$NETWORK/config/vanguard-genesis.ssz $CDN/vanguard-genesis.ssz?ignoreCache=1 \
-  && wget -O /opt/lukso/networks/$NETWORK/config/vanguard-config.yaml $CDN/vanguard-config.yaml?ignoreCache=1 \
   && wget -O /usr/local/bin/app https://github.com/lukso-network/$REPO/releases/download/$TAG/$CLIENT-$PLATFORM-$(uname -m) \
   && chmod +x /usr/local/bin/app
 
